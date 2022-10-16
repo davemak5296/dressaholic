@@ -1,11 +1,7 @@
 import * as React from 'react';
 import FormInput from '../FormInput/form-input.component';
-import {
-  EMAIL_SIGN_IN_START,
-  GOOGLE_SIGN_IN_START,
-  SIGN_IN_FAILED,
-} from '../../store/user/user.reducer';
-import { useDispatch } from 'react-redux';
+import { useGoogleSignIn } from '../../hooks/useGoogleSignIn';
+import { useEmailSignIn } from '../../hooks/useEmailSignIn';
 
 const defaultFormFields = {
   email: '',
@@ -13,31 +9,21 @@ const defaultFormFields = {
 };
 
 const SignInForm: React.FC = () => {
-  const dispatch = useDispatch();
   const [formFields, setFormFields] = React.useState(defaultFormFields);
   const { email, password } = formFields;
+  const { refetch: googleRefetch } = useGoogleSignIn();
+  const { refetch: emailRefetch } = useEmailSignIn(email, password);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
 
-  const signInWithGoogle = () => {
-    dispatch(GOOGLE_SIGN_IN_START());
-  };
-
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     const handler = async () => {
       event.preventDefault();
-
-      try {
-        dispatch(EMAIL_SIGN_IN_START({ email, password }));
-        resetFormFields();
-      } catch (error: unknown) {
-        dispatch(SIGN_IN_FAILED(error));
-        resetFormFields();
-      }
+      emailRefetch();
+      resetFormFields();
     };
-
     handler().catch(Error);
   };
 
@@ -71,7 +57,10 @@ const SignInForm: React.FC = () => {
           <button type="submit" className="daisy-btn-primary px-8 py-4 uppercase">
             sign in
           </button>
-          <button onClick={signInWithGoogle} className="daisy-btn-secondary px-8 py-4 uppercase">
+          <button
+            onClick={() => googleRefetch()}
+            className="daisy-btn-secondary px-8 py-4 uppercase"
+          >
             sign in with google
           </button>
         </div>

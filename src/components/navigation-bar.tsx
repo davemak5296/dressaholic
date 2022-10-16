@@ -6,19 +6,26 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../assets/letter-d.svg';
 import { ReactComponent as MenuIcon } from '../assets/icon-menu.svg';
 import { ReactComponent as ShoppingBag } from '../assets/icon-shopping-bag.svg';
+import { getCurrentUser, signOutUser } from '../utils/firebase/firebase.utils';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 type NavBarProps = {
   scrollY: number;
 };
 
 const Navigation: React.FC<NavBarProps> = (props) => {
-  const dispatch = useDispatch();
-  const currUser = useSelector(selectCurrentUser);
+  // const dispatch = useDispatch();
+  // const currUser = useSelector(selectCurrentUser);
+  const queryClient = useQueryClient();
+  const { data, refetch } = useQuery(['user'], getCurrentUser);
+
   const { scrollY } = props;
   const isScrolledOver = scrollY > 36;
 
-  const signOutHandler: React.MouseEventHandler = () => {
-    dispatch(SIGN_OUT_START());
+  const signOutHandler: React.MouseEventHandler = async () => {
+    // dispatch(SIGN_OUT_START());
+    await signOutUser();
+    refetch();
   };
 
   return (
@@ -72,9 +79,11 @@ const Navigation: React.FC<NavBarProps> = (props) => {
               </ul>
             </div>
           </div>
-          {currUser ? (
+          {data ? (
+            // {currUser ? (
             <button
               onClick={signOutHandler}
+              // onClick={signOutHandler}
               className="daisy-rounded-btn daisy-btn daisy-btn-ghost text-base text-warning-content hover:daisy-btn-warning hover:text-warning-content"
             >
               sign out
