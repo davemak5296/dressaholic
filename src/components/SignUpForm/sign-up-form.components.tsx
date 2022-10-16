@@ -1,7 +1,6 @@
 import * as React from 'react';
 import FormInput from '../FormInput/form-input.component';
-import { useDispatch } from 'react-redux';
-import { SIGN_UP_FAILED, SIGN_UP_START } from '../../store/user/user.reducer';
+import { useEmailSignUp } from '../../hooks/useEmailSignUp';
 
 const defaultFormFields = {
   displayName: '',
@@ -11,9 +10,9 @@ const defaultFormFields = {
 };
 
 const SignUpForm: React.FC = () => {
-  const dispatch = useDispatch();
   const [formFields, setFormFields] = React.useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
+  const { refetch } = useEmailSignUp(email, password, displayName);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -28,13 +27,9 @@ const SignUpForm: React.FC = () => {
         resetFormFields();
         return;
       }
-      try {
-        dispatch(SIGN_UP_START({ email, password, displayName }));
-        resetFormFields();
-      } catch (error: unknown) {
-        dispatch(SIGN_UP_FAILED(error));
-        resetFormFields();
-      }
+
+      refetch();
+      resetFormFields();
     };
 
     handler().catch(Error);
