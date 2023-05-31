@@ -1,46 +1,42 @@
-# Getting Started with Create React App
+# **Dressaholic**
+> A newer version of this project (built using Next.js) is available.
+> 
+> new repo: https://github.com/davemak5296/dressaholic-next
+> 
+> new deployed site: https://dressaholic-next.vercel.app
+  
+> **Disclaimer**  
+This is a personal project created for self-educational purposes only. The project is not intended for commercial use and should not be used for any business purposes. The sample data provided in the project is for demonstration purposes only and should not be used in a production environment.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **Introduction**
+Dressaholic is a simple e-commerce web application designed for users to browse, filter and purchase clothing items.
 
-## Available Scripts
+## **Tech Stacks**
+This project is built using the following technologies, services and libraries:
+- `HTML & CSS` (with `TailwindCSS` for utility-first styling and responsive design, and component library `daisy-ui`)
+- `TypeScript`
+- `create-react-app`
+- `redux`, `react-redux` & `redux-toolkit` for global state management
+- `Immer` for simplifying state updates by creating a new immutable state behind the scenes.
+- `Framer Motion` for creating smooth and performant animations and page transitions.
+- `Firebase` for user authentication and database
+- `Stripe` for payment processing
 
-In the project directory, you can run:
+## **Features**
+1. **User Authentication** - Users can sign in using their existing Google account or register a new account.
+2. **Product Filtering** - Users can filter products by brand and price range.
+3. **Shopping Cart** - Users can add products to their cart and proceed to place an order by providing customer information.
+4. **Payment** - Users can securely pay for their order using a test credit card.
 
-### `yarn start`
+## **Getting Started**
+To run this project locally, follow these steps:
+1. Clone the repository: `git clone https://github.com/yourusername/dressaholic.git`
+2. Install dependencies: `npm install` or `yarn install`
+3. Set up environment variables for Firebase and Stripe.
+4. Start the development server: `npm run dev` or `yarn dev`
+5. Open your browser and navigate to http://localhost:3000
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## **Credits**
+- Logo: [flaticon](https://www.flaticon.com/free-icons/letter-d)
+- Pictures on HomePage: [Unsplash](https://unsplash.com/)
+- Product pictures: [Costco](https://www.costco.com/), [UNIQLO](https://www.uniqlo.com/) & [Decathlon](https://www.decathlon.com/)
