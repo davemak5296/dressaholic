@@ -1,19 +1,4 @@
-// require('dotenv').config();
-
-const stripe = require('stripe')(
-  'sk_test_51LIxMiB263Z3T3svU39Adlabf3hToMEmPFIDYJ8cpeceQoPnGSemDa7yu93yQHpj8lWyxX1p03nGGOobxWTNB4JI00gtEcBvMm'
-);
-// const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-
-// (async() => {
-//   const paymentIntent = await stripe.paymentIntents.create({
-//     amount: 123,
-//     currency: 'usd',
-//     payment_method_types: ['card'],
-//   });
-//   console.log(JSON.stringify(paymentIntent));
-// })();
-
+const stripe = require('stripe')(`${process.env.STRIPE_SECRET_KEY}`);
 exports.handler = async (event) => {
   try {
     const { amount } = JSON.parse(event.body);
